@@ -1,0 +1,10 @@
+^C:\AIAGENT\BUILD\WINDOWS\X64\CMAKEFILES\D418C0C08D9F6E9E6AC9C14811A2208F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/aiagent/windows -BC:/aiagent/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/aiagent/build/windows/x64/aiagent.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

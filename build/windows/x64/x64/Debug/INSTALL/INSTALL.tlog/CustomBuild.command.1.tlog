@@ -1,0 +1,10 @@
+^C:\AIAGENT\BUILD\WINDOWS\X64\CMAKEFILES\D418C0C08D9F6E9E6AC9C14811A2208F\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

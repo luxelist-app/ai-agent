@@ -1,0 +1,28 @@
+^C:\AIAGENT\BUILD\WINDOWS\X64\CMAKEFILES\0BC6B3E4133816AAB291943F08CB960E\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\aliso\Downloads\flutter_windows_3.13.3-stable\flutter PROJECT_DIR=C:\aiagent FLUTTER_ROOT=C:\Users\aliso\Downloads\flutter_windows_3.13.3-stable\flutter FLUTTER_EPHEMERAL_DIR=C:\aiagent\windows\flutter\ephemeral PROJECT_DIR=C:\aiagent FLUTTER_TARGET=C:\aiagent\lib\main.dart DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\aiagent\.dart_tool\package_config.json C:/Users/aliso/Downloads/flutter_windows_3.13.3-stable/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\AIAGENT\BUILD\WINDOWS\X64\CMAKEFILES\06CF8B8179FD55AA51A701F986F1E2BC\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\AIAGENT\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/aiagent/windows -BC:/aiagent/build/windows/x64 --check-stamp-file C:/aiagent/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
