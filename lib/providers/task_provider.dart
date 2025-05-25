@@ -19,4 +19,15 @@ class TaskNotifier extends StateNotifier<List<Task>> {
   }
 
   Future<void> refresh() => load();
+
+  Future<void> addTask(String title,
+      {String status = 'backlog'}) async {
+    final res = await http.post(
+      Uri.parse('$_endpoint/'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'title': title, 'status': status}),
+    );
+    final newTask = Task.fromJson(jsonDecode(res.body));
+    state = [...state, newTask];
+  }
 }

@@ -40,6 +40,39 @@ class TasksBoardPage extends ConsumerWidget {
           );
         }).toList(),
       ),
-    );
+      floatingActionButton: FloatingActionButton(
+    child: const Icon(Icons.add),
+    onPressed: () async {
+      final ctrl = TextEditingController();
+      final title = await showModalBottomSheet<String>(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) => Padding(
+          padding: EdgeInsets.fromLTRB(
+              16, 16, 16, MediaQuery.of(context).viewInsets.bottom + 16),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            TextField(
+              controller: ctrl,
+              decoration: const InputDecoration(labelText: 'Task title'),
+              autofocus: true,
+              onSubmitted: (_) => Navigator.pop(context, ctrl.text),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context, ctrl.text),
+              child: const Text('Save'),
+            ),
+          ]),
+        ),
+      );
+
+      if (title != null && title.trim().isNotEmpty) {
+        await ref
+            .read(tasksProvider.notifier)
+            .addTask(title.trim());          // POST /tasks & update state
+      }
+    },
+  ),
+);
   }
 }

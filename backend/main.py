@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from pathlib import Path
 from pydantic import BaseModel
-from .routes import chat as chat_mod, explain, tasks, ideas, summary, mood
-from .agents.loader import AgentRouter
+from backend.routes import chat as chat_mod, explain, tasks, ideas, summary, mood
+from backend.agents.loader import AgentRouter
 
 MANIFEST = Path(__file__).parent / "agents" / "manifest.yaml"
 
-app = FastAPI(title="AI Dev Agent API")
+app = FastAPI(title="AI Agent API")
 router = AgentRouter(str(MANIFEST))
 
 # Include routes

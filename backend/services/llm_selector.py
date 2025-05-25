@@ -19,9 +19,10 @@ from __future__ import annotations
 import csv
 import os
 import re
-import httpx
 from functools import lru_cache
 from typing import Optional
+import httpx
+from backend.utils.aiml_client import ask_aiml
 
 HF_CSV_URL = (
     "https://huggingface.co/spaces/"
@@ -63,6 +64,7 @@ CLIENTS = {
     "google":   ("GOOGLE_API_KEY",   lambda: __import__("google.generativeai").generativeai),
     "mistral":  ("MISTRAL_API_KEY",  lambda: __import__("mistralai.client").client.MistralClient()),
     "together": ("TOGETHER_API_KEY", lambda: __import__("together").Together()),
+    "aiml":    ("AIML_API_KEY", lambda: ask_aiml),
 }
 
 @lru_cache(maxsize=1)
@@ -124,7 +126,17 @@ def get_llm():
         return Adapter()
     
     # ---------- fallback ----------
-    import openai
-    if not os.getenv("OPENAI_API_KEY"):
-        raise RuntimeError("No usable LLM credentials found in environment variables.")
-    return openai.OpenAI()  # default (gpt-3.5)
+    aiml_key = os.getenv("AIML_API_KEY")
+    if aiml_key:
+        # 1️⃣  Use ask_aiml from backend.utils.aiml_client
+        class AIMLAdapter:
+            async def acomplete(self, prompt: str):
+                # ask_aiml is synchronous, so run in thread executor
+                import asyncio
+                loop = asyncio.get_event_loop()
+                return await loop.run_in_executor(None, ask_aiml, prompt)
+        print("[LLMSelector] Using AIML provider (fallback)")
+        return AIMLAdapter()
+
+    # If we get here, nothing is configured:
+    raise RuntimeError("No usable LLM credentials found.")

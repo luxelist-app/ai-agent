@@ -21,7 +21,7 @@ routes:
     agent: strategist
   - pattern: ".*"           # fallback
     agent: general
-  - pattern: "/(add|sync|plan|close)"
+  - pattern: "/(add|plan|sync|close)"
     agent: organizer
 
 agents:

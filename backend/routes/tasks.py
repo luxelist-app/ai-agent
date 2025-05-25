@@ -15,7 +15,7 @@ async def get_tasks():
     with open("data/tasks.json", "r") as f:
         return json.load(f)
 
-@router.get("/")
+@router.get("/list")
 async def list_tasks():
     return all_tasks()
 
@@ -79,3 +79,14 @@ async def estimate_task_time():
 
     avg_time = sum(durations) / len(durations)
     return {"estimated_minutes": round(avg_time, 1)}
+
+@router.post("/create")
+async def create_task(payload: dict):
+    from backend.services.task_db import add_task
+    t = add_task(
+        title=payload["title"],
+        status=payload.get("status", "backlog"),
+        labels=",".join(payload.get("labels", [])),
+    )
+    # optional: also open a GH issue
+    return t
