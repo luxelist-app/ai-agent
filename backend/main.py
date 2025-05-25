@@ -12,10 +12,10 @@ router = AgentRouter(str(MANIFEST))
 # Include routes
 app.include_router(chat_mod.router, prefix="/chat")
 app.include_router(explain.router, prefix="/explain")
-app.include_router(tasks.router, prefix="/tasks")
 app.include_router(ideas.router, prefix="/ideas")
 app.include_router(summary.router, prefix="/summary")
 app.include_router(mood.router, prefix="/mood")
+app.include_router(tasks.router, prefix="/tasks", tags=["Tasks"])
 
 class ChatReq(BaseModel):
     message: str

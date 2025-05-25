@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'main_view.dart';
 
 void main() {
-  runApp(const AgentChatApp());
+  runApp(const ProviderScope(child: AgentChatApp(),),);
 }
 
 class AgentChatApp extends StatelessWidget {

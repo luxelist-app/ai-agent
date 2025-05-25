@@ -1,6 +1,7 @@
 import json
 from fastapi import APIRouter, Body
 from backend.utils.file_io import load_json, log_item
+from backend.services.task_db import all_tasks
 from datetime import datetime
 
 router = APIRouter()
@@ -13,6 +14,10 @@ async def add_task(task: dict = Body(...)):
 async def get_tasks():
     with open("data/tasks.json", "r") as f:
         return json.load(f)
+
+@router.get("/")
+async def list_tasks():
+    return all_tasks()
 
 @router.post("/start")
 async def start_task(data: dict = Body(...)):
