@@ -59,7 +59,7 @@ async def complete_task(data: dict = Body(...)):
 
 @router.get("/estimate")
 async def estimate_task_time():
-    from utils.file_io import load_json
+    from backend.utils.file_io import load_json
 
     tasks = load_json("tasks.json")
 
