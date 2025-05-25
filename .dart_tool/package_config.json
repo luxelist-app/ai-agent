@@ -50,10 +50,22 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "flutter_boardview",
+      "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_boardview-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "flutter_riverpod",
+      "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_riverpod-2.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_test",
@@ -122,6 +134,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "riverpod",
+      "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-2.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///C:/Users/aliso/Downloads/flutter_windows_3.13.3-stable/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -138,6 +156,12 @@
       "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "state_notifier",
+      "rootUri": "file:///C:/Users/aliso/AppData/Local/Pub/Cache/hosted/pub.dev/state_notifier-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "stream_channel",
@@ -194,7 +218,7 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-05-24T22:01:44.983462Z",
+  "generated": "2025-05-25T18:08:59.419416Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///C:/Users/aliso/Downloads/flutter_windows_3.13.3-stable/flutter",

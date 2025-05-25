@@ -21,6 +21,9 @@ routes:
     agent: strategist
   - pattern: ".*"           # fallback
     agent: general
+  - pattern: "/(add|sync|plan|close)"
+    agent: organizer
+
 agents:
   smartcode:
     file: smart_code_agent.py
@@ -40,5 +43,9 @@ agents:
     tools: []
   general:
     file: general_agent.py
+    llm: *gpt
+    tools: []
+  organizer:
+    file: task_organizer_agent.py
     llm: *gpt
     tools: []

@@ -122,6 +122,7 @@ def get_llm():
                     )
                     return resp.choices[0].message.content
         return Adapter()
+    
     # ---------- fallback ----------
     import openai
     if not os.getenv("OPENAI_API_KEY"):
