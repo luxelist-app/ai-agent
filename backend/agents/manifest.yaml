@@ -1,0 +1,44 @@
+# backend/agents/manifest.yaml
+meta:
+  name: AI App Development Agent
+  version: 0.1.0
+  description: Modular multi-agent system for building Flutter + Python apps.
+  default_persona: neutral
+llms:
+  openai_gpt4o: &gpt
+    provider: openai
+    model: gpt-4o-mini
+    temperature: 0.2
+routes:
+  # Ordered by “who can answer” score
+  - pattern: "explain|why|how does"
+    agent: explainer        # maps to ExplainCodeAgent
+  - pattern: "security|vuln|cve"
+    agent: security
+  - pattern: "generate code|write .* in (dart|python)"
+    agent: smartcode
+  - pattern: "roadmap|timeline|estimate"
+    agent: strategist
+  - pattern: ".*"           # fallback
+    agent: general
+agents:
+  smartcode:
+    file: smart_code_agent.py
+    llm: *gpt
+    tools: [repo_writer, code_reviewer]
+  security:
+    file: security_guardian_agent.py
+    llm: *gpt
+    tools: [static_scanner]
+  strategist:
+    file: feature_strategist_agent.py
+    llm: *gpt
+    tools: [idea_tracker, timeline_builder]
+  explainer:
+    file: explain_code_agent.py
+    llm: *gpt
+    tools: []
+  general:
+    file: general_agent.py
+    llm: *gpt
+    tools: []
