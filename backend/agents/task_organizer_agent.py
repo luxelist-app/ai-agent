@@ -69,4 +69,15 @@ class Agent(Strategist):
                         f"### Brainstorm {dt.datetime.now():%Y-%m-%d %H:%M}\n{idea}")
             return AgentResponse(content="📝 Added brainstorm block to Obsidian.")
 
+        if msg.startswith("/audit "):
+            url = msg.split(" ", 1)[1]
+            # Call the audit API (use httpx or requests)
+            import httpx
+            async with httpx.AsyncClient() as client:
+                resp = await client.post("http://127.0.0.1:5000/audit/", json={"url": url})
+                data = resp.json()
+            for t in data["tasks"]:
+                db.add_task(title=t)
+            return AgentResponse(content=f"🛡️ Audit complete. Added {len(data['tasks'])} tasks to backlog.")
+        
         return await super().handle(msg, ctx)

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pathlib import Path
 from pydantic import BaseModel
-from backend.routes import chat as chat_mod, explain, tasks, ideas, summary, mood
+from backend.routes import chat as chat_mod, explain, tasks, ideas, summary, mood, audit
 from backend.agents.loader import AgentRouter
 
 MANIFEST = Path(__file__).parent / "agents" / "manifest.yaml"
@@ -16,6 +16,7 @@ app.include_router(ideas.router, prefix="/ideas")
 app.include_router(summary.router, prefix="/summary")
 app.include_router(mood.router, prefix="/mood")
 app.include_router(tasks.router, prefix="/tasks", tags=["Tasks"])
+app.include_router(audit.router, prefix="/audit", tags=["Audit"])
 
 class ChatReq(BaseModel):
     message: str
